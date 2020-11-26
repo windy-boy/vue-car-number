@@ -1,0 +1,16 @@
+{
+  "id": "849059",
+  "name": "test",
+  "font_family": "iconfont-cjc",
+  "css_prefix_text": "icon-cjc-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1842087",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
