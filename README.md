@@ -7,12 +7,12 @@
 * 下载
 
 ```
-npm install car-number
+npm install vue-car-number
 ```
 * 在main.js中加入
 
 ```
-import CarNumber from 'car-number';
+import CarNumber from 'vue-car-number';
 Vue.use(CarNumber);
 ```
 * 在需要的页面中使用
