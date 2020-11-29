@@ -3,6 +3,11 @@
 ### 介绍
 * vue-car-number是一款基于vue的车牌号输入控件，支持自定义输入框。
 
+### 示例
+[gitHub](https://windy-boy.github.io/vue-car-number-demo)
+
+[gitee](http://chenjiancong.gitee.io/vue-car-number-demo)
+
 ### 项目中使用
 * 下载
 
