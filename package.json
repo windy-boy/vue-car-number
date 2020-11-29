@@ -1,8 +1,9 @@
 {
   "name": "vue-car-number",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
-  "main": "dist/carNumber.umd.min.js",
+  "description": "一款基于vue的车牌号输入控件，支持自定义输入框",
+  "main": "lib/carNumber.umd.min.js",
   "license": "MIT",
   "keywords": [
     "car",
@@ -46,11 +47,12 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-undef": 0
+    }
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not dead"
+    "last 2 versions"
   ]
 }

@@ -12,7 +12,8 @@ npm install vue-car-number
 * 在main.js中加入
 
 ```
-import CarNumber from 'vue-car-number';
+import CarNumber from 'vue-car-number'
+import 'vue-car-number/lib/carNumber.css'
 Vue.use(CarNumber);
 ```
 * 在需要的页面中使用
@@ -32,7 +33,7 @@ borderColor|String|#959595| 输入框边框颜色
 borderRadius|Number|0| 边框圆角
 fontColor|String|#959595| 文字颜色
 fontSize|Number|16| 文字大小
-defaultProvince|String|null| 默认省份
+defaultCarPlate|String|null| 默认车牌号
 maskBackground|String|transparent| 遮罩颜色
 clickMaskCloseKeyBoard|Boolean|true| 是否点击遮罩关闭键盘
 isNewEnergy|Boolean|false| 是否新能源车牌
@@ -46,3 +47,13 @@ isNewEnergy|Boolean|false| 是否新能源车牌
 参数|slotProps|说明
 --|--|--
 default|value:Array|自定义输入框
+
+## 贡献
+有任何意见或建议都欢迎提 issue
+
+## License
+[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+
+## 特别感谢
+[vue](https://github.com/vuejs/vue)
+[input-number-plate](https://github.com/wokeT/input-number-plate)

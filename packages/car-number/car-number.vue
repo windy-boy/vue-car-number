@@ -21,7 +21,6 @@
         </div> 
       </slot>
     </div>
-
     <!-- 键盘 -->
     <transition name="keyboard">
       <div v-if="visible" class="keyboard__container">
@@ -126,8 +125,8 @@ export default {
       type: Number,
       default: 16
     },
-    // 默认省份
-    defaultProvince: {
+    // 默认车牌号
+    defaultCarPlate: {
       type: String
     },
     // 遮罩颜色
@@ -152,7 +151,7 @@ export default {
       inputValue: [],
       carNumberLength: 7,
       keybordType: "ABC",
-      bottomBlock: null,
+      placehoderDom: null,
       provinceList: [
         "京",
         "津",
@@ -237,13 +236,12 @@ export default {
       },
       immediate: true
     },
-    defaultProvince: {
+    defaultCarPlate: {
       handler(val) {
-        if(val) {
-          if (!this.provinceList.includes(val)) {
-            throw new Error("无效省份");
-          } else {
-            this.inputValue.push(val);
+        if (val) {
+          this.inputValue = []
+          for (let i = 0, len = val.length; i < len; i++) {
+            this.inputValue.push(val[i])
           }
         }
       },
@@ -262,7 +260,7 @@ export default {
       if (val) {
         //键盘唤醒并且键盘挡住输入框,同时页面无滚动条时，占位块展示出来从而使页面可以通过scrllTo()来滚动
         if (this.checkOcclusion()) {
-          this.bottomBlock.style.display = "block";
+          this.placehoderDom.style.display = "block";
         }
         window.scrollTo(0, 250);
       } else {
@@ -270,7 +268,7 @@ export default {
           block: "start",
           behavior: "smooth"
         });
-        this.bottomBlock.style.display = "none";
+        this.placehoderDom.style.display = "none";
       }
     }
   },
@@ -284,11 +282,14 @@ export default {
     }
   },
   created () {
-    this.bottomBlock = document.createElement("div");
-    this.bottomBlock.style.cssText =
-      "height: 260px; width: 100%; background: red; opacity:0";
-    this.bottomBlock.style.display = "none";
-    document.body.appendChild(this.bottomBlock);
+    if (window !== 'undefined') {
+      this.placehoderDom = document.createElement("div");
+      this.placehoderDom.style.cssText = "height: 260px; width: 100%; background: red; opacity:0";
+      this.placehoderDom.style.display = "none";
+      document.body.appendChild(this.placehoderDom);
+    } else {
+      throw new Error('不支持非window环境');
+    }
   },
   methods: {
     // 关闭键盘
@@ -346,7 +347,7 @@ export default {
     },
     clickMask() {
       if (this.clickMaskCloseKeyBoard) {
-        this.submit()
+        this.submit();
       }
     }
   }
@@ -385,8 +386,9 @@ export default {
     }
     .line {
       width: 1px;
-      margin: 10px 0;
       position: absolute;
+      transform: translate(0, -50%);
+      top: 50%;
       right: 0;
       height: 50%;
     }
