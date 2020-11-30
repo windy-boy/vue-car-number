@@ -65,8 +65,11 @@ default|value:Array|自定义输入框
 [input-number-plate](https://github.com/wokeT/input-number-plate)
 
 ## Change Log
-* 1.0.4
+* 1.0.5
 解决键盘没有挡住输入框，但页面存在滚动条的时候，键盘弹出页面会滚动的问题
+
+* 1.0.4
+none
 
 * 1.0.3
 默认省份改为默认车牌号
