@@ -61,4 +61,21 @@ default|value:Array|自定义输入框
 
 ## 特别感谢
 [vue](https://github.com/vuejs/vue)
+
 [input-number-plate](https://github.com/wokeT/input-number-plate)
+
+## Change Log
+* 1.0.4
+解决键盘没有挡住输入框，但页面存在滚动条的时候，键盘弹出页面会滚动的问题
+
+* 1.0.3
+默认省份改为默认车牌号
+
+* 1.0.2
+默认样式调整
+
+* 1.0.1
+默认样式调整
+
+* 1.0.0
+首次发版

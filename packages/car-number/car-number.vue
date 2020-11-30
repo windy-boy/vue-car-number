@@ -150,46 +150,47 @@ export default {
       visible: false,
       inputValue: [],
       carNumberLength: 7,
-      keybordType: "ABC",
+      keybordType: 'ABC',
       placehoderDom: null,
+      isOcclusion: false,
       provinceList: [
-        "京",
-        "津",
-        "渝",
-        "沪",
-        "冀",
-        "晋",
-        "辽",
-        "吉",
-        "黑",
-        "苏",
-        "浙",
-        "皖",
-        "闽",
-        "赣",
-        "鲁",
-        "豫",
-        "鄂",
-        "湘",
-        "粤",
-        "琼",
-        "川",
-        "贵",
-        "云",
-        "陕",
-        "甘",
-        "青",
-        "蒙",
-        "桂",
-        "宁",
-        "新",
-        "藏",
-        "使",
-        "领",
-        "警",
-        "学",
-        "港",
-        "澳"
+        '京',
+        '津',
+        '渝',
+        '沪',
+        '冀',
+        '晋',
+        '辽',
+        '吉',
+        '黑',
+        '苏',
+        '浙',
+        '皖',
+        '闽',
+        '赣',
+        '鲁',
+        '豫',
+        '鄂',
+        '湘',
+        '粤',
+        '琼',
+        '川',
+        '贵',
+        '云',
+        '陕',
+        '甘',
+        '青',
+        '蒙',
+        '桂',
+        '宁',
+        '新',
+        '藏',
+        '使',
+        '领',
+        '警',
+        '学',
+        '港',
+        '澳'
       ],
       letterList: [
         1,
@@ -202,42 +203,42 @@ export default {
         8,
         9,
         0,
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z"
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z'
       ]
     }
   },
   watch: {
     isNewEnergy: {
-      handler(val) {
-        this.carNumberLength = val ? 8 : 7;
+      handler (val) {
+        this.carNumberLength = val ? 8 : 7
       },
       immediate: true
     },
     defaultCarPlate: {
-      handler(val) {
+      handler (val) {
         if (val) {
           this.inputValue = []
           for (let i = 0, len = val.length; i < len; i++) {
@@ -248,106 +249,112 @@ export default {
       immediate: true
     },
     inputValue: {
-      handler() {
-        let len = this.isNewEnergy ? 8 : 7;
-        if (this.inputValue.length === 0) this.keybordType = "ABC";
-        if (this.inputValue.length > 0 && this.inputValue.length < len)
-        this.keybordType = '返回'
+      handler () {
+        let len = this.isNewEnergy ? 8 : 7
+        if (this.inputValue.length === 0) this.keybordType = 'ABC'
+        if (this.inputValue.length > 0 && this.inputValue.length < len) this.keybordType = '返回'
       },
       immediate: true
     },
-    visible(val) {
+    visible (val) {
       if (val) {
-        //键盘唤醒并且键盘挡住输入框,同时页面无滚动条时，占位块展示出来从而使页面可以通过scrllTo()来滚动
+        // 输入框被挡住,同时页面无滚动条时，展示占位块，让页面可滚动
         if (this.checkOcclusion()) {
-          this.placehoderDom.style.display = "block";
+          this.placehoderDom.style.display = 'block'
         }
-        window.scrollTo(0, 250);
+        // 只有输入框被挡住的时候才滚动
+        if (this.isOcclusion) {
+          window.scrollTo(0, 250)
+        }
       } else {
-        document.body.scrollIntoView({
-          block: "start",
-          behavior: "smooth"
-        });
-        this.placehoderDom.style.display = "none";
+        if (this.isOcclusion) {
+          document.body.scrollIntoView({
+            block: 'start',
+            behavior: 'smooth'
+          })
+        }
+        this.placehoderDom.style.display = 'none'
       }
     }
   },
   computed: {
-    surplusList() {
-      if (this.keybordType === "ABC") {
-        return this.provinceList.slice(29, 36);
+    surplusList () {
+      if (this.keybordType === 'ABC') {
+        return this.provinceList.slice(29, 36)
       } else {
-        return this.letterList.slice(29, 34);
+        return this.letterList.slice(29, 34)
       }
     }
   },
   created () {
     if (window !== 'undefined') {
-      this.placehoderDom = document.createElement("div");
-      this.placehoderDom.style.cssText = "height: 260px; width: 100%; background: red; opacity:0";
-      this.placehoderDom.style.display = "none";
-      document.body.appendChild(this.placehoderDom);
+      this.placehoderDom = document.createElement('div')
+      this.placehoderDom.style.cssText = 'height: 260px; width: 100%; background: red; opacity: 0'
+      this.placehoderDom.style.display = 'none'
+      document.body.appendChild(this.placehoderDom)
     } else {
-      throw new Error('不支持非window环境');
+      throw new Error('不支持非window环境')
     }
   },
   methods: {
     // 关闭键盘
-    close() {
-      this.visible = false;
+    close () {
+      this.visible = false
     },
     // 打开键盘
-    open() {
-      this.visible = true;
+    open () {
+      this.visible = true
     },
     // 清空
-    cancel() {
+    cancel () {
       this.inputValue = []
-      this.$emit("submit", this.inputValue.join(""));
+      this.$emit('submit', this.inputValue.join(''))
     },
     // 完成输入
-    submit() {
-      this.$emit("submit", this.inputValue.join(""));
+    submit () {
+      this.$emit('submit', this.inputValue.join(''))
       this.close()
     },
     // 键盘类型切换
-    toggle() {
+    toggle () {
       let len = this.isNewEnergy ? 7 : 6
-      if (this.inputValue.length > 0 && this.inputValue.length < len) return;
-      this.keybordType = this.keybordType === "ABC" ? "返回" : "ABC";
+      if (this.inputValue.length > 0 && this.inputValue.length < len) return
+      this.keybordType = this.keybordType === 'ABC' ? '返回' : 'ABC'
     },
     // 删除一个字符
-    deleteOne() {
-      this.inputValue.pop();
+    deleteOne () {
+      this.inputValue.pop()
     },
     // 输入
-    inputWord(val) {
+    inputWord (val) {
       if (this.isNewEnergy) {
-        if (this.inputValue.length === 8) return;
+        if (this.inputValue.length === 8) return
       } else {
-        if (this.inputValue.length === 7) return;
+        if (this.inputValue.length === 7) return
       }
-      this.inputValue.push(val);
+      this.inputValue.push(val)
     },
     // 检测键盘是否遮挡输入框
-    checkOcclusion() {
-      const clientHeight = document.documentElement.clientHeight;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const inputTopHeight = this.$refs.inputContainer.getBoundingClientRect().top;
-      const inputHeight = this.$refs.inputContainer.scrollHeight;
-      //如果键盘被挡住，并且页面没有滚动条,返回true
+    checkOcclusion () {
+      const clientHeight = document.documentElement.clientHeight
+      const scrollHeight = document.documentElement.scrollHeight
+      const inputTopHeight = this.$refs.inputContainer.getBoundingClientRect().top
+      const inputHeight = this.$refs.inputContainer.scrollHeight
+      // 键盘是否挡住输入框
+      this.isOcclusion = inputHeight + 250 + inputTopHeight >= clientHeight
+      // 如果输入框被挡住，并且页面没有滚动条,返回true
       if (
         inputHeight + 250 + inputTopHeight >= clientHeight &&
         scrollHeight === clientHeight
       ) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
-    clickMask() {
+    clickMask () {
       if (this.clickMaskCloseKeyBoard) {
-        this.submit();
+        this.submit()
       }
     }
   }
