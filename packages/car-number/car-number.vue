@@ -7,7 +7,7 @@
       <slot :value="inputValue">
         <div
           class="input__container"
-          :style="{border: `1px solid ${borderColor}`, borderRadius: borderRadius + 'px', width: width + 'px', height: height + 'px'}"
+          :style="{border: `1px solid ${borderColor}`, borderRadius: borderRadius + 'px', width: width + 'px', height: height + 'px', backgroundColor: backgroundColor}"
         >
           <div
             class="input__box"
@@ -109,6 +109,11 @@ export default {
     borderColor: {
       type: String,
       default: '#959595'
+    },
+    // 输入框背景颜色
+    backgroundColor: {
+      type: String,
+      default: 'transparent'
     },
     // 边框圆角
     borderRadius: {
@@ -409,6 +414,7 @@ export default {
     width: 100%;
     height: 250px;
     background: #d0d3dc;
+    box-shadow: 0 6px 10px 3px #959595;
     .keybord__header {
       padding: 0 15px;
       height: 40px;

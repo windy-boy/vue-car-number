@@ -33,8 +33,9 @@ Vue.use(CarNumber);
 名字|类型|默认值|说明
 --|--|--|--
 width|Number|200| 输入框宽度
-height|Number|30| 输入框边框颜色
+height|Number|30| 输入框高度
 borderColor|String|#959595| 输入框边框颜色
+backgroundColor|String|transparent| 输入框背景颜色
 borderRadius|Number|0| 边框圆角
 fontColor|String|#959595| 文字颜色
 fontSize|Number|16| 文字大小
@@ -65,20 +66,30 @@ default|value:Array|自定义输入框
 [input-number-plate](https://github.com/wokeT/input-number-plate)
 
 ## Change Log
+* 1.0.6
+
+增加参数backgroundColor，增加键盘阴影
+
 * 1.0.5
-解决键盘没有挡住输入框，但页面存在滚动条的时候，键盘弹出页面会滚动的问题
+
+修复键盘没有挡住输入框，但页面存在滚动条的时候，键盘弹出页面会滚动的问题
 
 * 1.0.4
+
 none
 
 * 1.0.3
+
 默认省份改为默认车牌号
 
 * 1.0.2
+
 默认样式调整
 
 * 1.0.1
+
 默认样式调整
 
 * 1.0.0
+
 首次发版
