@@ -3,7 +3,7 @@
     <div @click="clickMask()" v-if="visible" class="mask__container" :style="{backgroundColor: maskBackground}"></div>
 
     <!-- 输入框 -->
-    <div @click="open()" ref="inputContainer">
+    <div @click="openFun()" ref="inputContainer">
       <slot :value="inputValue">
         <div
           class="input__container"
@@ -146,6 +146,11 @@ export default {
     },
     // 是否新能源车牌
     isNewEnergy: {
+      type: Boolean,
+      default: false
+    },
+    // 是否禁用输入
+    disabled:{
       type: Boolean,
       default: false
     }
@@ -305,6 +310,11 @@ export default {
     // 关闭键盘
     close () {
       this.visible = false
+    },
+    // 点击输入框
+    openFun(){
+      if(this.disabled) return;
+      this.open();
     },
     // 打开键盘
     open () {
